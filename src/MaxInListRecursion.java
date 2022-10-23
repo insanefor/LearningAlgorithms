@@ -1,27 +1,24 @@
 public class MaxInListRecursion {
-    public static int calculator(int[] arr, int max, int counter){ //упразднить max
-        //   Возврат переменной при последнем вызове функции
-        //[2,4,1,0]
+    public static int calculator(int[] arr, int counter){ //упразднил max
+        //проверял логику по массиву [8,9,1,0]
 
-        // Запись первого числа массива как максимальное
+        // Пропуск хода для первого элемента массива
         if(counter == 0){
-            max = arr[0];
+            counter++;
+            calculator(arr, counter);
         }
         ////////////////////////////
 
-        //Основная проверка
-        if(arr[counter] > max){
-            max = arr[counter];
-        }
+        //Основная проверка. Если текущий элемент меньше предыдущего, то текущий принимает максимальное значение
+        if(arr[counter] < arr[counter - 1]) arr[counter] = arr[counter - 1];
         ///////////////////////////
 
-        if(counter == arr.length - 1){
-            return max;
-        }
+        //   Возврат переменной при последнем вызове функции
+        if(counter == arr.length - 1) return arr[counter];
+
         ///////////////////////////
 
-        counter++;
-        return calculator(arr,max, counter);
+        return calculator(arr, counter + 1);
 
     }
 
